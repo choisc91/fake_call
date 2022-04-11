@@ -1,0 +1,25 @@
+name: fake_call
+description: Android fack call screen app
+
+publish_to: 'characin'
+
+version: 1.0.1+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  vibrate: ^0.0.4
+  simple_ripple_animation: ^0.0.3
+  vibration: ^1.7.4-nullsafety.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
