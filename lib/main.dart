@@ -1,7 +1,13 @@
-import 'package:fake_call/model/settings.dart';
-import 'package:fake_call/widget/page_wait.dart';
+import 'package:fake_call/widget/page_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+
+// TimeOfDay class 에서 밀리초를 제공해주지 않아, 별도로 DateTIme 으로 생성.
+extension DateTimeExtension on DateTime {
+  DateTime applied(TimeOfDay time) {
+    return DateTime(year, month, day, time.hour, time.minute);
+  }
+}
 
 void main() {
   runApp(const MyApp());
@@ -21,13 +27,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WaitPage(
-        settings: Settings(
-          name: 'NAME',
-          number: 'CALL_NUMBER',
-          waitTime: const Duration(seconds: 5),
-        ),
-      ),
+      home: const SettingsPage(),
+      // home: WaitPage(
+      //   settings: Settings(
+      //     name: 'NAME',
+      //     number: 'CALL_NUMBER',
+      //     waitTime: const Duration(seconds: 5),
+      //   ),
+      // ),
     );
   }
 

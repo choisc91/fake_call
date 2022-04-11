@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vibration/vibration.dart';
+import 'package:flutter/services.dart';
 
 // 수신 화면.
 class WaitCallPage extends StatefulWidget {
@@ -13,15 +13,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
   @override
   void initState() {
     super.initState();
-    _vibration();
-  }
-
-  // 진동.
-  void _vibration() async {
-    final bool? isChecked = await Vibration.hasVibrator();
-    if (isChecked != null && isChecked) {
-      Vibration.vibrate();
-    }
+    HapticFeedback.lightImpact();
   }
 
   @override
