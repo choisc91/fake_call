@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:fake_call/main.dart';
 import 'package:fake_call/model/settings.dart';
 import 'package:fake_call/widget/page_wait.dart';
 import 'package:flutter/material.dart';
@@ -14,25 +11,34 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPaGEState extends State<SettingsPage> {
+  // 발신인 이름.
   final TextEditingController _nameCtrl = TextEditingController();
 
+  // 전화번호.
   final TextEditingController _numberCtrl = TextEditingController();
 
+  // 식별 시간.
   final TextEditingController _timeCtrl = TextEditingController();
+
+  // 선택된 대기 시간.
+  int _duration = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.large(
         backgroundColor: Colors.green,
         child: const Icon(Icons.call),
         onPressed: () {
-          // todo 확인처리.
-          if (_nameCtrl.text.isNotEmpty && _numberCtrl.text.isNotEmpty) {
+          // todo, 필드 에러 내면 더 좋을것 같음. From field 로 변경 고려해 볼 것.
+          if (_nameCtrl.text.isNotEmpty &&
+              _numberCtrl.text.isNotEmpty &&
+              _duration != 0) {
             final settings = Settings(
               name: _nameCtrl.text,
               number: _numberCtrl.text,
-              waitTime: const Duration(milliseconds: 0),
+              waitTime: Duration(milliseconds: _duration),
             );
             Navigator.pushReplacement(
               context,
@@ -42,11 +48,11 @@ class _SettingsPaGEState extends State<SettingsPage> {
           }
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            // 발신자 이름 입력 필드.
             TextField(
               controller: _nameCtrl,
               keyboardType: TextInputType.text,
@@ -58,6 +64,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
               ),
             ),
             const SizedBox(height: 8.0),
+            // 전화번호 입력 필드.
             TextField(
               controller: _numberCtrl,
               keyboardType: TextInputType.number,
@@ -69,6 +76,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
               ),
             ),
             const SizedBox(height: 8.0),
+            // 선택된 시간을 식별하는 필드.
             TextField(
               readOnly: true,
               controller: _timeCtrl,
@@ -91,20 +99,19 @@ class _SettingsPaGEState extends State<SettingsPage> {
       context: context,
       initialTime: TimeOfDay.now(),
     ).then((TimeOfDay? result) {
-      // todo case 1. 현재 period 와 선택된 period 가 틀릴 경우.
-      // todo case 2. 현재 시간보다 선택된 시간이 작을 경우.
-      // todo == 위 두 케이스의 경우 selected 의 day 같을 하나 올려서 duration 을 구해야 할 듯 함.
-      // ...
       if (result != null) {
-        final now = DateTime.now();
-        final selected =
+        final now = DateTime.now(); // 현재 시간.
+        final selected = // 선택된 시간.
             DateTime(now.year, now.month, now.day, result.hour, result.minute);
+
+        // 선택된 시간과 현재시간의 차만큼의 대기시간 생성.
+        _duration =
+            (selected.millisecondsSinceEpoch - now.millisecondsSinceEpoch)
+                .abs();
 
         setState(() {
           _timeCtrl.text = result.format(context);
         });
-
-        // todo, Duration 객체 생성.
       }
     });
   }
