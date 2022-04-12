@@ -104,6 +104,8 @@ class _SettingsPaGEState extends State<SettingsPage> {
 
         final distance = selected.millisecondsSinceEpoch - now.millisecondsSinceEpoch;
 
+        // todo 로직 개선 필요, 현재 그냥 차이만큼만 구하고 있어 뒤로 1분을 땡기버려도 1분 후가 됨.
+
         if (distance > 0) {
           // 선택된 시간과 현재시간의 차만큼의 대기시간 생성.
           _duration = (selected.millisecondsSinceEpoch - now.millisecondsSinceEpoch).abs();
