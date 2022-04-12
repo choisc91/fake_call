@@ -1,8 +1,11 @@
+import 'package:fake_call/model/settings.dart';
 import 'package:flutter/material.dart';
 
 // 수신중 화면.
 class ReceivePage extends StatefulWidget {
-  const ReceivePage({Key? key}) : super(key: key);
+  final Settings settings;
+
+  const ReceivePage({Key? key, required this.settings}) : super(key: key);
 
   @override
   State<ReceivePage> createState() => _ReceivePageState();

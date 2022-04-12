@@ -1,5 +1,6 @@
 import 'package:fake_call/model/settings.dart';
 import 'package:fake_call/widget/page_wait.dart';
+import 'package:fake_call/widget/page_wait_call.dart';
 import 'package:flutter/material.dart';
 
 // 설정 화면.
@@ -29,12 +30,10 @@ class _SettingsPaGEState extends State<SettingsPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.large(
         backgroundColor: Colors.green,
-        child: const Icon(Icons.call),
+        child: const Icon(Icons.check),
         onPressed: () {
           // todo, 필드 에러 내면 더 좋을것 같음. From field 로 변경 고려해 볼 것.
-          if (_nameCtrl.text.isNotEmpty &&
-              _numberCtrl.text.isNotEmpty &&
-              _duration != 0) {
+          if (_nameCtrl.text.isNotEmpty && _numberCtrl.text.isNotEmpty && _duration != 0) {
             final settings = Settings(
               name: _nameCtrl.text,
               number: _numberCtrl.text,
@@ -42,8 +41,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
             );
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(
-                  builder: (context) => WaitPage(settings: settings)),
+              MaterialPageRoute(builder: (context) => WaitPage(settings: settings)),
             );
           }
         },
@@ -101,17 +99,20 @@ class _SettingsPaGEState extends State<SettingsPage> {
     ).then((TimeOfDay? result) {
       if (result != null) {
         final now = DateTime.now(); // 현재 시간.
-        final selected = // 선택된 시간.
-            DateTime(now.year, now.month, now.day, result.hour, result.minute);
+        final selected =
+            DateTime(now.year, now.month, now.day, result.hour, result.minute); // 선택된 시간.
 
-        // 선택된 시간과 현재시간의 차만큼의 대기시간 생성.
-        _duration =
-            (selected.millisecondsSinceEpoch - now.millisecondsSinceEpoch)
-                .abs();
+        final distance = selected.millisecondsSinceEpoch - now.millisecondsSinceEpoch;
 
-        setState(() {
-          _timeCtrl.text = result.format(context);
-        });
+        if (distance > 0) {
+          // 선택된 시간과 현재시간의 차만큼의 대기시간 생성.
+          _duration = (selected.millisecondsSinceEpoch - now.millisecondsSinceEpoch).abs();
+          setState(() {
+            _timeCtrl.text = result.format(context);
+          });
+        } else {
+          // todo 시간을 뒤로 땡기지 말라는 토스트 생성 바람.
+        }
       }
     });
   }

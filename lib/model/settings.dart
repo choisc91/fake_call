@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Settings {
   // 발신인.
   String name;

@@ -35,7 +35,7 @@ class _WaitPageState extends State<WaitPage> {
     await Future.delayed(duration, () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const WaitCallPage()),
+        MaterialPageRoute(builder: (context) => WaitCallPage(settings: widget.settings)),
       );
     });
   }

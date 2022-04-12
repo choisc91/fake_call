@@ -1,4 +1,5 @@
 import 'package:fake_call/widget/page_settings.dart';
+import 'package:fake_call/widget/page_wait_call.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
@@ -28,30 +29,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const SettingsPage(),
-      // home: WaitPage(
-      //   settings: Settings(
-      //     name: 'NAME',
-      //     number: 'CALL_NUMBER',
-      //     waitTime: const Duration(seconds: 5),
-      //   ),
-      // ),
-    );
-  }
-
-  //
-  Widget _sample() {
-    return Scaffold(
-      body: Column(
-        children: [
-          RippleAnimation(
-            repeat: true,
-            color: Colors.blue,
-            minRadius: 90,
-            ripplesCount: 6,
-            child: Container(),
-          ),
-        ],
-      ),
     );
   }
 }
