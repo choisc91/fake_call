@@ -17,6 +17,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     HapticFeedback.lightImpact();
   }
 
@@ -35,8 +36,8 @@ class _WaitCallPageState extends State<WaitCallPage> {
               minRadius: 40.0,
               ripplesCount: 4,
               child: SizedBox(
-                width: 80.0,
-                height: 80.0,
+                width: 72.0,
+                height: 72.0,
                 child: FloatingActionButton(
                   heroTag: 'CALL',
                   backgroundColor: Colors.white,
@@ -46,7 +47,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
                   child: const Icon(
                     Icons.call,
                     color: Colors.green,
-                    size: 40.0,
+                    size: 32.0,
                   ),
                 ),
               ),
@@ -57,8 +58,8 @@ class _WaitCallPageState extends State<WaitCallPage> {
               minRadius: 40.0,
               ripplesCount: 4,
               child: SizedBox(
-                width: 80.0,
-                height: 80.0,
+                width: 72.0,
+                height: 72.0,
                 child: FloatingActionButton(
                   heroTag: 'CALL_END',
                   backgroundColor: Colors.white,
@@ -68,7 +69,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
                   child: const Icon(
                     Icons.call_end,
                     color: Colors.red,
-                    size: 40.0,
+                    size: 32.0,
                   ),
                 ),
               ),
@@ -96,21 +97,23 @@ class _WaitCallPageState extends State<WaitCallPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                const SizedBox(height: 8.0),
                 const Text(
                   '수신전화',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                   ),
                 ),
-                const SizedBox(height: 80.0),
+                const SizedBox(height: 60.0),
                 Text(
                   widget.settings.name,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 38.0,
+                    fontSize: 32.0,
                   ),
                 ),
+                const SizedBox(height: 4.0),
                 Text(
                   '휴대전화 ${widget.settings.number}',
                   style: const TextStyle(
@@ -122,15 +125,15 @@ class _WaitCallPageState extends State<WaitCallPage> {
             ),
             Column(
               children: const [
-                Icon(Icons.call, color: Colors.white, size: 18.0),
-                SizedBox(height: 4.0),
+                Icon(Icons.call, color: Colors.white, size: 14.0),
+                SizedBox(height: 2.0),
                 Text(
                   '마지막 통화\nAM 8:28',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 14.0,
-                    height: 1.5,
+                    fontSize: 12.0,
+                    height: 1.4,
                   ),
                 ),
               ],
@@ -140,7 +143,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
               children: [
                 Row(),
                 Container(
-                  width: 100.0,
+                  width: 80.0,
                   height: 4.0,
                   color: Colors.white,
                 ),
@@ -149,7 +152,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
                   '메세지 보내기',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16.0,
+                    fontSize: 14.0,
                   ),
                 ),
               ],
