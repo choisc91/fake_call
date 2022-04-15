@@ -1,9 +1,11 @@
 import 'package:fake_call/model/settings.dart';
+import 'package:fake_call/widget/page_receive.dart';
 import 'package:fake_call/widget/page_wait.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 // 설정 화면.
+// todo 현지화 작업 필요.
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
@@ -86,7 +88,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
               value: _minute,
               minValue: 0,
               maxValue: 60,
-              step: 10,
+              step: 1,
               itemHeight: 100.0,
               axis: Axis.horizontal,
               onChanged: (value) => setState(() => _minute = value),
@@ -101,7 +103,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
                 IconButton(
                   icon: const Icon(Icons.remove),
                   onPressed: () => setState(() {
-                    final newValue = _minute - 10;
+                    final newValue = _minute - 1;
                     _minute = newValue.clamp(0, 60);
                   }),
                 ),
@@ -109,7 +111,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
                 IconButton(
                   icon: const Icon(Icons.add),
                   onPressed: () => setState(() {
-                    final newValue = _minute + 10;
+                    final newValue = _minute + 1;
                     _minute = newValue.clamp(0, 60);
                   }),
                 ),

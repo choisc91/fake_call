@@ -1,9 +1,11 @@
 import 'package:fake_call/model/settings.dart';
+import 'package:fake_call/widget/page_receive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
 // 수신 화면.
+// todo 현지화 작업 필요.
 class WaitCallPage extends StatefulWidget {
   final Settings settings;
 
@@ -18,7 +20,6 @@ class _WaitCallPageState extends State<WaitCallPage> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-    HapticFeedback.lightImpact();
   }
 
   @override
@@ -26,9 +27,9 @@ class _WaitCallPageState extends State<WaitCallPage> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 120.0),
+        padding: const EdgeInsets.only(bottom: 100.0, left: 40.0, right: 40.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             RippleAnimation(
               repeat: true,
@@ -42,13 +43,13 @@ class _WaitCallPageState extends State<WaitCallPage> {
                   heroTag: 'CALL',
                   backgroundColor: Colors.white,
                   onPressed: () {
-                    // todo, 통화중 화면으로 이동.
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ReceivePage(settings: widget.settings)),
+                    );
                   },
-                  child: const Icon(
-                    Icons.call,
-                    color: Colors.green,
-                    size: 32.0,
-                  ),
+                  child: const Icon(Icons.call, color: Colors.green, size: 34.0),
                 ),
               ),
             ),
@@ -63,17 +64,11 @@ class _WaitCallPageState extends State<WaitCallPage> {
                 child: FloatingActionButton(
                   heroTag: 'CALL_END',
                   backgroundColor: Colors.white,
-                  onPressed: () {
-                    // todo, 앱 종료.
-                  },
-                  child: const Icon(
-                    Icons.call_end,
-                    color: Colors.red,
-                    size: 32.0,
-                  ),
+                  onPressed: () => SystemNavigator.pop(),
+                  child: const Icon(Icons.call_end, color: Colors.red, size: 34.0),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -110,10 +105,10 @@ class _WaitCallPageState extends State<WaitCallPage> {
                   widget.settings.name,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 32.0,
+                    fontSize: 36.0,
                   ),
                 ),
-                const SizedBox(height: 4.0),
+                const SizedBox(height: 6.0),
                 Text(
                   '휴대전화 ${widget.settings.number}',
                   style: const TextStyle(
