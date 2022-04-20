@@ -16,25 +16,37 @@ class ReceivePage extends StatefulWidget {
 }
 
 class _ReceivePageState extends State<ReceivePage> {
-  //
+  // 조도 센서 객체.
   final Light _lightSensor = Light();
 
-  //
+  // 조도 센서 콜백.
   late StreamSubscription _subscription;
 
-  bool _isDark = false;
+  //
+  late bool _isDark = false;
 
-  @override
-  void dispose() {
-    super.dispose();
-    _subscription.cancel();
-  }
+  //
+  late Timer _timer;
+
+  late int _value = 0;
 
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual);
     initPlatformState();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        _value = timer.tick;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _subscription.cancel();
+    _timer.cancel();
   }
 
   Future<void> initPlatformState() async {
@@ -42,7 +54,7 @@ class _ReceivePageState extends State<ReceivePage> {
       _subscription = _lightSensor.lightSensorStream.listen((int luxValue) {
         print("Lux value: $luxValue");
         setState(() {
-          _isDark = (luxValue > 10) ? false : true;
+          // _isDark = (luxValue > 10) ? false : true;
         });
       });
     } on LightException catch (exception) {
@@ -82,11 +94,13 @@ class _ReceivePageState extends State<ReceivePage> {
                             centerTitle: true,
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(Icons.call, color: Colors.white, size: 16.0),
-                                SizedBox(width: 4.0),
-                                Text('00:08',
-                                    style: TextStyle(color: Colors.white, fontSize: 16.0)),
+                              children: [
+                                const Icon(Icons.call, color: Colors.white, size: 16.0),
+                                const SizedBox(width: 4.0),
+                                Text(
+                                  '00:${'${_value % 100}'.padLeft(2, '0')}',
+                                  style: const TextStyle(color: Colors.white, fontSize: 16.0),
+                                ),
                               ],
                             ),
                             actions: [

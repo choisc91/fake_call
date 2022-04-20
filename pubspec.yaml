@@ -11,10 +11,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  intl: ^0.17.0
+
   cupertino_icons: ^1.0.2
+
+  light: ^2.1.0
   simple_ripple_animation: ^0.0.3
   numberpicker: ^2.1.1
-  light: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -22,4 +28,5 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 flutter:
+  generate: true
   uses-material-design: true

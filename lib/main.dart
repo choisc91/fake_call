@@ -1,15 +1,8 @@
 import 'package:fake_call/widget/page_settings.dart';
-import 'package:fake_call/widget/page_wait_call.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:simple_ripple_animation/simple_ripple_animation.dart';
-
-// TimeOfDay class 에서 밀리초를 제공해주지 않아, 별도로 DateTIme 으로 생성.
-extension DateTimeExtension on DateTime {
-  DateTime applied(TimeOfDay time) {
-    return DateTime(year, month, day, time.hour, time.minute);
-  }
-}
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,16 +18,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // set portrait.
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
       title: 'a Fake call screen app',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ko'),
+        // Locale('ja'),
+      ],
+      theme: ThemeData(primarySwatch: Colors.teal),
       home: const SettingsPage(),
     );
   }

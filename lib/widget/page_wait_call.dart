@@ -31,6 +31,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // Call button.
             RippleAnimation(
               repeat: true,
               color: Colors.white.withOpacity(0.5),
@@ -42,17 +43,19 @@ class _WaitCallPageState extends State<WaitCallPage> {
                 child: FloatingActionButton(
                   heroTag: 'CALL',
                   backgroundColor: Colors.white,
+                  child: const Icon(Icons.call, color: Colors.green, size: 34.0),
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ReceivePage(settings: widget.settings)),
+                        builder: (context) => ReceivePage(settings: widget.settings),
+                      ),
                     );
                   },
-                  child: const Icon(Icons.call, color: Colors.green, size: 34.0),
                 ),
               ),
             ),
+            // Reject button.
             RippleAnimation(
               repeat: true,
               color: Colors.white,

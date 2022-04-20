@@ -81,7 +81,10 @@ class _SettingsPaGEState extends State<SettingsPage> {
             // 선택된 시간을 식별하는 필드.
             Text(
               'Please select a waiting time',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline6,
             ),
             const SizedBox(height: 16.0),
             NumberPicker(
@@ -102,18 +105,20 @@ class _SettingsPaGEState extends State<SettingsPage> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.remove),
-                  onPressed: () => setState(() {
-                    final newValue = _minute - 1;
-                    _minute = newValue.clamp(0, 60);
-                  }),
+                  onPressed: () =>
+                      setState(() {
+                        final newValue = _minute - 1;
+                        _minute = newValue.clamp(0, 60);
+                      }),
                 ),
                 Text('Current value: $_minute min'),
                 IconButton(
                   icon: const Icon(Icons.add),
-                  onPressed: () => setState(() {
-                    final newValue = _minute + 1;
-                    _minute = newValue.clamp(0, 60);
-                  }),
+                  onPressed: () =>
+                      setState(() {
+                        final newValue = _minute + 1;
+                        _minute = newValue.clamp(0, 60);
+                      }),
                 ),
               ],
             ),
