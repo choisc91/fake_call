@@ -2,6 +2,7 @@ import 'package:fake_call/model/settings.dart';
 import 'package:fake_call/widget/page_receive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
 // 수신 화면.
@@ -20,6 +21,13 @@ class _WaitCallPageState extends State<WaitCallPage> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    FlutterRingtonePlayer.playRingtone();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    FlutterRingtonePlayer.stop();
   }
 
   @override

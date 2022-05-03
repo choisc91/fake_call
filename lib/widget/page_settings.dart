@@ -1,8 +1,8 @@
 import 'package:fake_call/model/settings.dart';
-import 'package:fake_call/widget/page_receive.dart';
 import 'package:fake_call/widget/page_wait.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // 설정 화면.
 // todo 현지화 작업 필요.
@@ -28,7 +28,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('a Fake call settings'),
+        title: Text(AppLocalizations.of(context)!.test),
         actions: [
           IconButton(
             icon: const Icon(Icons.check),
@@ -81,10 +81,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
             // 선택된 시간을 식별하는 필드.
             Text(
               'Please select a waiting time',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,
+              style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(height: 16.0),
             NumberPicker(
@@ -105,20 +102,18 @@ class _SettingsPaGEState extends State<SettingsPage> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.remove),
-                  onPressed: () =>
-                      setState(() {
-                        final newValue = _minute - 1;
-                        _minute = newValue.clamp(0, 60);
-                      }),
+                  onPressed: () => setState(() {
+                    final newValue = _minute - 1;
+                    _minute = newValue.clamp(0, 60);
+                  }),
                 ),
                 Text('Current value: $_minute min'),
                 IconButton(
                   icon: const Icon(Icons.add),
-                  onPressed: () =>
-                      setState(() {
-                        final newValue = _minute + 1;
-                        _minute = newValue.clamp(0, 60);
-                      }),
+                  onPressed: () => setState(() {
+                    final newValue = _minute + 1;
+                    _minute = newValue.clamp(0, 60);
+                  }),
                 ),
               ],
             ),

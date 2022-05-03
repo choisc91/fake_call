@@ -12,10 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const startColor = 0xff4e9fb6;
-
-  static const endColor = 0xff7accb5;
-
   @override
   Widget build(BuildContext context) {
     // set portrait.
@@ -25,16 +21,8 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
       title: 'a Fake call screen app',
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ko'),
-        // Locale('ja'),
-      ],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(primarySwatch: Colors.teal),
       home: const SettingsPage(),
     );

@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   flutter_localizations:
     sdk: flutter
 
@@ -18,15 +19,25 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
-  light: ^2.1.0
+  light: ^2.1.0 # 조도 센서.
+
   simple_ripple_animation: ^0.0.3
+
   numberpicker: ^2.1.1
+
+  flutter_ringtone_player: ^3.2.0 # 벨소리.
+
+  # import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+  # 공식 홈페이지의 매뉴얼 그대로 따라하면 자동으로 생성이 되질 않음.
+  # $flutter pub add intl_generator --dev
+  # 해당 패키지를 설치하여 해결하였음. 자세한 원리는 아래 링크 참조.
+  # https://medium.com/flutter-seoul/flutter-localizations-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%ED%95%98%EA%B8%B0-8fa5f50a3fd2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  intl_generator: ^0.2.1
 
 flutter:
-  generate: true
   uses-material-design: true
+  generate: true
