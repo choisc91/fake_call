@@ -106,7 +106,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
               selectedTextStyle: TextStyle(
                 fontFamily: 'Yache',
                 fontSize: 40.0,
-                color: Colors.teal,
+                color: Colors.pinkAccent,
               ),
               axis: Axis.horizontal,
               onChanged: (value) => setState(() => _minute = value),
@@ -132,6 +132,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
                   style: TextStyle(
                     fontFamily: 'Yache',
                     fontSize: 24.0,
+                    color: Colors.pinkAccent,
                   ),
                 ),
                 const SizedBox(width: 8.0),
