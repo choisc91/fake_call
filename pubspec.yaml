@@ -41,3 +41,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  fonts:
+    - family: Yache
+      fonts:
+        - asset: assets/yache.ttf

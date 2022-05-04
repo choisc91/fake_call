@@ -28,7 +28,10 @@ class _SettingsPaGEState extends State<SettingsPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.test),
+        title: Text(
+          AppLocalizations.of(context)!.settings_title,
+          style: TextStyle(fontFamily: 'Yache'),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.check),
@@ -37,9 +40,9 @@ class _SettingsPaGEState extends State<SettingsPage> {
                 final settings = Settings(
                   name: _nameCtrl.text,
                   number: _numberCtrl.text,
-                  // waitTime: Duration(minutes: _minute),
                   // todo 테스트 용, 실제 분으로 바꾸기 바람.
                   waitTime: Duration(seconds: _minute),
+                  // waitTime: Duration(minutes: _minute),
                 );
                 Navigator.pushReplacement(
                   context,
@@ -54,34 +57,40 @@ class _SettingsPaGEState extends State<SettingsPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            const SizedBox(height: 8.0),
             // 발신자 이름 입력 필드.
             TextField(
               controller: _nameCtrl,
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.done,
-              decoration: const InputDecoration(
+              style: TextStyle(fontFamily: 'Yache'),
+              decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.person),
-                hintText: 'Please enter the caller\'s name',
+                labelText: AppLocalizations.of(context)!.input_name,
               ),
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: 12.0),
             // 전화번호 입력 필드.
             TextField(
               controller: _numberCtrl,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
-              decoration: const InputDecoration(
+              style: TextStyle(fontFamily: 'Yache'),
+              decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.call),
-                hintText: 'Please enter the caller\'s number',
+                labelText: AppLocalizations.of(context)!.input_number,
               ),
             ),
             const SizedBox(height: 16.0),
             // 선택된 시간을 식별하는 필드.
             Text(
-              'Please select a waiting time',
-              style: Theme.of(context).textTheme.headline6,
+              AppLocalizations.of(context)!.wait_time_header,
+              style: TextStyle(
+                fontFamily: 'Yache',
+                fontSize: 24.0,
+              ),
             ),
             const SizedBox(height: 16.0),
             NumberPicker(
@@ -90,6 +99,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
               maxValue: 60,
               step: 1,
               itemHeight: 100.0,
+              textStyle: TextStyle(fontFamily: 'Yache'),
               axis: Axis.horizontal,
               onChanged: (value) => setState(() => _minute = value),
               decoration: BoxDecoration(
@@ -97,6 +107,7 @@ class _SettingsPaGEState extends State<SettingsPage> {
                 border: Border.all(color: Colors.black26),
               ),
             ),
+            const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -107,7 +118,15 @@ class _SettingsPaGEState extends State<SettingsPage> {
                     _minute = newValue.clamp(0, 60);
                   }),
                 ),
-                Text('Current value: $_minute min'),
+                const SizedBox(width: 8.0),
+                Text(
+                  '$_minute ${AppLocalizations.of(context)!.wait_time_value}',
+                  style: TextStyle(
+                    fontFamily: 'Yache',
+                    fontSize: 24.0,
+                  ),
+                ),
+                const SizedBox(width: 8.0),
                 IconButton(
                   icon: const Icon(Icons.add),
                   onPressed: () => setState(() {

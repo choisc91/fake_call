@@ -12,6 +12,8 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static const String app_title = 'Emergency escape calling me';
+
   @override
   Widget build(BuildContext context) {
     // set portrait.
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      title: 'a Fake call screen app',
+      title: app_title,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(primarySwatch: Colors.teal),

@@ -1,4 +1,8 @@
 {
-  "settings_title": "settings title.",
-  "test" : "this test text"
+  "settings_title": "Settings",
+  "input_name": "Caller name",
+  "input_number": "Caller number",
+  "wait_time_header": "Select a waiting time",
+  "wait_time_value": "min",
+  "test": "this is test text"
 }
