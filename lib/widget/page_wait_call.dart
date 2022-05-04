@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // 수신 화면.
 // todo 현지화 작업 필요.
@@ -17,11 +18,16 @@ class WaitCallPage extends StatefulWidget {
 }
 
 class _WaitCallPageState extends State<WaitCallPage> {
+  static const String hero_call = 'CALL';
+
+  static const String hero_reject = 'REJECT';
+
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     FlutterRingtonePlayer.playRingtone();
+    // todo, 매너모드가 아닐시의 사운드는 확인, 매너모드 유무체크해서 진동 해주면 좋을 것 같음.
   }
 
   @override
@@ -49,7 +55,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
                 width: 72.0,
                 height: 72.0,
                 child: FloatingActionButton(
-                  heroTag: 'CALL',
+                  heroTag: hero_call,
                   backgroundColor: Colors.white,
                   child: const Icon(Icons.call, color: Colors.green, size: 34.0),
                   onPressed: () {
@@ -73,7 +79,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
                 width: 72.0,
                 height: 72.0,
                 child: FloatingActionButton(
-                  heroTag: 'CALL_END',
+                  heroTag: hero_reject,
                   backgroundColor: Colors.white,
                   onPressed: () => SystemNavigator.pop(),
                   child: const Icon(Icons.call_end, color: Colors.red, size: 34.0),
@@ -104,8 +110,8 @@ class _WaitCallPageState extends State<WaitCallPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(height: 8.0),
-                const Text(
-                  '수신전화',
+                Text(
+                  AppLocalizations.of(context)!.voice_data,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
@@ -121,7 +127,7 @@ class _WaitCallPageState extends State<WaitCallPage> {
                 ),
                 const SizedBox(height: 6.0),
                 Text(
-                  '휴대전화 ${widget.settings.number}',
+                  '${AppLocalizations.of(context)!.call_type} ${widget.settings.number}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
@@ -130,16 +136,16 @@ class _WaitCallPageState extends State<WaitCallPage> {
               ],
             ),
             Column(
-              children: const [
+              children: [
                 Icon(Icons.call, color: Colors.white, size: 14.0),
                 SizedBox(height: 2.0),
                 Text(
-                  '마지막 통화\nAM 8:28',
+                  AppLocalizations.of(context)!.recent_call,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12.0,
                     height: 1.4,
+                    fontSize: 12.0,
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -154,11 +160,11 @@ class _WaitCallPageState extends State<WaitCallPage> {
                   color: Colors.white,
                 ),
                 const SizedBox(height: 8.0),
-                const Text(
-                  '메세지 보내기',
+                Text(
+                  AppLocalizations.of(context)!.send_message,
                   style: TextStyle(
-                    color: Colors.white,
                     fontSize: 14.0,
+                    color: Colors.white,
                   ),
                 ),
               ],

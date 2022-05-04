@@ -4,5 +4,9 @@
   "input_number": "Caller number",
   "wait_time_header": "Select a waiting time",
   "wait_time_value": "min",
+  "voice_data": "Incoming call",
+  "call_type": "Mobile",
+  "recent_call": "Most recent call\n8:54 AM",
+  "send_message": "Send message",
   "test": "this is test text"
 }

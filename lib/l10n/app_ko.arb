@@ -4,5 +4,9 @@
   "input_number": "발신자 전화번호",
   "wait_time_header": "대기 시간을 선택해주세요",
   "wait_time_value": "분",
+  "voice_data": "수신전화",
+  "call_type": "휴대전화",
+  "recent_call": "마지막 통화\n8:54 AM",
+  "send_message": "메세지 보내기",
   "test": "이것은 테스트 문구입니다."
 }

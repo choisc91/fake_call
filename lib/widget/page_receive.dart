@@ -22,12 +22,13 @@ class _ReceivePageState extends State<ReceivePage> {
   // 조도 센서 콜백.
   late StreamSubscription _subscription;
 
-  //
+  // 조도센서 화면 꺼짐 여부.
   late bool _isDark = false;
 
   //
   late Timer _timer;
 
+  //
   late int _value = 0;
 
   @override

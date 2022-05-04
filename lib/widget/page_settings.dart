@@ -99,7 +99,15 @@ class _SettingsPaGEState extends State<SettingsPage> {
               maxValue: 60,
               step: 1,
               itemHeight: 100.0,
-              textStyle: TextStyle(fontFamily: 'Yache'),
+              textStyle: TextStyle(
+                fontFamily: 'Yache',
+                fontSize: 24.0,
+              ),
+              selectedTextStyle: TextStyle(
+                fontFamily: 'Yache',
+                fontSize: 40.0,
+                color: Colors.teal,
+              ),
               axis: Axis.horizontal,
               onChanged: (value) => setState(() => _minute = value),
               decoration: BoxDecoration(
