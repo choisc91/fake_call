@@ -4,6 +4,7 @@ import 'package:fake_call/model/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:light/light.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // 수신중 화면.
 class ReceivePage extends StatefulWidget {
@@ -25,11 +26,11 @@ class _ReceivePageState extends State<ReceivePage> {
   // 조도센서 화면 꺼짐 여부.
   late bool _isDark = false;
 
-  //
+  // 타이머 객체.
   late Timer _timer;
 
-  //
-  late int _value = 0;
+  // 타임 틱.
+  late int _timerTick = 0;
 
   @override
   void initState() {
@@ -37,9 +38,7 @@ class _ReceivePageState extends State<ReceivePage> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual);
     initPlatformState();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        _value = timer.tick;
-      });
+      setState(() => _timerTick = timer.tick);
     });
   }
 
@@ -50,13 +49,11 @@ class _ReceivePageState extends State<ReceivePage> {
     _timer.cancel();
   }
 
+  //
   Future<void> initPlatformState() async {
     try {
       _subscription = _lightSensor.lightSensorStream.listen((int luxValue) {
-        print("Lux value: $luxValue");
-        setState(() {
-          // _isDark = (luxValue > 10) ? false : true;
-        });
+        setState(() => _isDark = (luxValue > 10) ? false : true);
       });
     } on LightException catch (exception) {
       print(exception);
@@ -99,8 +96,11 @@ class _ReceivePageState extends State<ReceivePage> {
                                 const Icon(Icons.call, color: Colors.white, size: 16.0),
                                 const SizedBox(width: 4.0),
                                 Text(
-                                  '00:${'${_value % 100}'.padLeft(2, '0')}',
-                                  style: const TextStyle(color: Colors.white, fontSize: 16.0),
+                                  '00:${'${_timerTick}'.padLeft(2, '0')}',
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ],
                             ),
@@ -118,7 +118,7 @@ class _ReceivePageState extends State<ReceivePage> {
                           ),
                           const SizedBox(height: 6.0),
                           Text(
-                            '휴대전화 ${widget.settings.number}',
+                            '${AppLocalizations.of(context)!.call_type} ${widget.settings.number}',
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16.0,
@@ -142,17 +142,23 @@ class _ReceivePageState extends State<ReceivePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                _buildIconButton(Icons.voicemail_outlined, '녹음'),
-                                _buildIconButton(Icons.videocam_off_outlined, '영상통화'),
-                                _buildIconButton(Icons.bluetooth, '블루투스'),
+                                _buildIconButton(
+                                    Icons.voicemail_outlined, AppLocalizations.of(context)!.record),
+                                _buildIconButton(Icons.videocam_off_outlined,
+                                    AppLocalizations.of(context)!.video_call),
+                                _buildIconButton(
+                                    Icons.bluetooth, AppLocalizations.of(context)!.bluetooth),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                _buildIconButton(Icons.volume_up, '스피커'),
-                                _buildIconButton(Icons.mic_off_outlined, '내 소리 차단'),
-                                _buildIconButton(Icons.dialpad, '키패드'),
+                                _buildIconButton(
+                                    Icons.volume_up, AppLocalizations.of(context)!.speaker),
+                                _buildIconButton(
+                                    Icons.mic_off_outlined, AppLocalizations.of(context)!.mute),
+                                _buildIconButton(
+                                    Icons.dialpad, AppLocalizations.of(context)!.keypad),
                               ],
                             ),
                             SizedBox(
@@ -186,7 +192,7 @@ class _ReceivePageState extends State<ReceivePage> {
       onPressed: () {},
       child: Column(
         children: [
-          Icon(icons, color: Colors.black, size: 24.0),
+          Icon(icons, color: Colors.black, size: 28.0),
           const SizedBox(height: 12.0),
           Text(
             label,

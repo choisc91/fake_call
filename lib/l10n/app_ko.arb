@@ -8,5 +8,11 @@
   "call_type": "휴대전화",
   "recent_call": "마지막 통화\n8:54 AM",
   "send_message": "메세지 보내기",
+  "record": "녹음",
+  "video_call": "영상통화",
+  "bluetooth": "블루투스",
+  "speaker": "스피커",
+  "mute": "내 소리 차단",
+  "keypad": "키패드",
   "test": "이것은 테스트 문구입니다."
 }

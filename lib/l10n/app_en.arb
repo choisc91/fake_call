@@ -8,5 +8,11 @@
   "call_type": "Mobile",
   "recent_call": "Most recent call\n8:54 AM",
   "send_message": "Send message",
+  "record": "Record",
+  "video_call": "Video call",
+  "bluetooth": "Bluetooth",
+  "speaker": "Speaker",
+  "mute": "Mute",
+  "keypad": "Keypad",
   "test": "this is test text"
 }
