@@ -5,7 +5,7 @@ import 'package:numberpicker/numberpicker.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // 설정 화면.
-// todo 현지화 작업 필요.
+// todo : 테마 선택하는 기능 필요 할 것 같음.
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
